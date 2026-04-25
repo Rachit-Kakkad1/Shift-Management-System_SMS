@@ -53,7 +53,7 @@ const DashboardCalendar = ({
         },
       },
     },
-    locale: "de-DE",
+    locale: "en-US",
     selectedDate: day,
     views: views,
     skipValidation: true,
