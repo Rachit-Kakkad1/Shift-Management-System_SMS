@@ -29,12 +29,28 @@ const UserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["admin", "employee"],
+      enum: ["admin", "employee", "hr"],
       default: "employee",
     },
     isActive: {
       type: Boolean,
       default: true,
+    },
+    passcodeHash: {
+      type: String,
+    },
+    passcodeAttempts: {
+      type: Number,
+      default: 0,
+    },
+    passcodeLockUntil: {
+      type: Date,
+    },
+    twoFactorSessionId: {
+      type: String,
+    },
+    twoFactorSessionExpires: {
+      type: Date,
     },
   },
   { timestamps: true }
