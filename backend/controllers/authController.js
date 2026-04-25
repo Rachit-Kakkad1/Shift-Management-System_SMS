@@ -3,6 +3,8 @@
 const User = require("../models/User.Model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
+const { logAction } = require("../utils/auditLogger");
 
 const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
@@ -61,6 +63,84 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
+    if (user.role === "admin" || user.role === "hr") {
+      const sessionId = crypto.randomUUID();
+      user.twoFactorSessionId = sessionId;
+      user.twoFactorSessionExpires = new Date(Date.now() + 10 * 60 * 1000);
+      await user.save();
+
+      return res.json({
+        _id: user._id,
+        role: user.role,
+        twoFactorSessionId: sessionId,
+        message: "2FA required",
+      });
+    }
+
+    await logAction(user._id, "login", "User logged in successfully");
+
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      team: user.team,
+      workType: user.workType,
+      role: user.role,
+      isActive: user.isActive,
+      token: generateToken(user._id),
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+const verifyPasscode = async (req, res) => {
+  try {
+    const { email, twoFactorSessionId, passcode } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (user.passcodeLockUntil && user.passcodeLockUntil > Date.now()) {
+      return res.status(429).json({ message: "Too many attempts, account locked temporarily" });
+    }
+
+    if (
+      !user.twoFactorSessionId ||
+      user.twoFactorSessionId !== twoFactorSessionId ||
+      !user.twoFactorSessionExpires ||
+      user.twoFactorSessionExpires < Date.now()
+    ) {
+      return res.status(401).json({ message: "Invalid or expired 2FA session" });
+    }
+
+    const isMatch = await bcrypt.compare(passcode, user.passcodeHash || "");
+    if (!isMatch) {
+      user.passcodeAttempts = (user.passcodeAttempts || 0) + 1;
+      let msg = "Invalid passcode";
+      let status = 401;
+      
+      if (user.passcodeAttempts >= 5) {
+        user.passcodeLockUntil = new Date(Date.now() + 15 * 60 * 1000);
+        msg = "Too many attempts, account locked temporarily";
+        status = 429;
+      }
+      
+      await user.save();
+      await logAction(user._id, "login_failed", "Failed 2FA verification");
+      return res.status(status).json({ message: msg });
+    }
+
+    user.passcodeAttempts = 0;
+    user.passcodeLockUntil = null;
+    user.twoFactorSessionId = null;
+    user.twoFactorSessionExpires = null;
+    await user.save();
+
+    await logAction(user._id, "login", "User logged in successfully via 2FA");
+
     res.json({
       _id: user._id,
       name: user.name,
@@ -91,5 +171,6 @@ const getUserProfile = async (req, res) => {
 module.exports = {
   registerUser,
   loginUser,
+  verifyPasscode,
   getUserProfile,
 };
