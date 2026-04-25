@@ -51,7 +51,7 @@ const ShiftCalendar = ({
         },
       },
     },
-    locale: "de-DE",
+    locale: "en-US",
     selectedDate: selectedDay,
     views: views,
     skipValidation: true,
