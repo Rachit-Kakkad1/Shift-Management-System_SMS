@@ -4,7 +4,7 @@ import { viewWeek, viewDay, viewMonthGrid } from "@schedule-x/calendar";
 
 const UserCalendar = ({ events }) => {
   const calendar = useCalendarApp({
-    locale: "de-DE",
+    locale: "en-US",
     defaultView: viewMonthGrid.name,
     skipValidation: true,
     monthGridOptions: {
