@@ -50,8 +50,8 @@ const UserShiftTable = ({ selectedMonth, user, filteredEvents }) => {
 
                 if (eventForDay) {
                   const hour = moment(eventForDay.start).format("HH:mm");
-                  if (hour === "08:00") return "F";
-                  if (hour === "13:30") return "S";
+                  if (hour === "08:00") return "M";
+                  if (hour === "13:30") return "E";
                 }
 
                 return "";
