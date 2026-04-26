@@ -1,13 +1,13 @@
 import moment from "moment-timezone";
 
-const DAYS = ["", "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+const DAYS = ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 const VertikalTable = ({ selectedMonth, handleFilter, filteredEvents }) => {
   return (
     <table className="table-auto border-collapse w-full text-sm">
       <thead>
         <tr>
-          <th className="border px-2 py-1 bg-gray-100">Datum</th>
+          <th className="border px-2 py-1 bg-gray-100">Date</th>
           {[...Array(moment(selectedMonth).daysInMonth())].map((_, i) => (
             <th key={i} className="border px-2 py-1 bg-gray-100 text-center">
               {String(i + 1).padStart(2, "0")}
@@ -16,7 +16,7 @@ const VertikalTable = ({ selectedMonth, handleFilter, filteredEvents }) => {
           <th className="border px-2 py-1 bg-gray-100 text-center">#</th>
         </tr>
         <tr>
-          <th className="border px-2 py-1 bg-gray-100">Tag</th>
+          <th className="border px-2 py-1 bg-gray-100">Day</th>
           {[...Array(moment(selectedMonth).daysInMonth())].map((_, i) => (
             <th
               key={i}
@@ -26,13 +26,13 @@ const VertikalTable = ({ selectedMonth, handleFilter, filteredEvents }) => {
                     .startOf("month")
                     .add(i, "day")
                     .isoWeekday()
-                ] === "Sa" ||
+                ] === "Sat" ||
                 DAYS[
                   moment(selectedMonth)
                     .startOf("month")
                     .add(i, "day")
                     .isoWeekday()
-                ] === "So"
+                ] === "Sun"
                   ? "bg-gray-400"
                   : "bg-gray-100"
               }  text-center`}
@@ -102,8 +102,8 @@ const VertikalTable = ({ selectedMonth, handleFilter, filteredEvents }) => {
 
                   if (eventForDay) {
                     const hour = moment(eventForDay.start).format("HH:mm");
-                    if (hour === "08:00") return "Früh";
-                    if (hour === "13:30") return "Spät";
+                    if (hour === "08:00") return "Morning";
+                    if (hour === "13:30") return "Evening";
                   }
 
                   return "";
