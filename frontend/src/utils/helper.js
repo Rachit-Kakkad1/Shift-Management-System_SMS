@@ -19,13 +19,13 @@ export const getNextMonth = (day) => {
 
 export const genareteWeeklySummary = (filteredEvents) => {
   const result = [
-    { weekday: "Montag", morning: 0, evening: 0 },
-    { weekday: "Dienstag", morning: 0, evening: 0 },
-    { weekday: "Mittwoch", morning: 0, evening: 0 },
-    { weekday: "Donnerstag", morning: 0, evening: 0 },
-    { weekday: "Freitag", morning: 0, evening: 0 },
-    { weekday: "Samstag", morning: 0, evening: 0 },
-    { weekday: "Sonntag", morning: 0, evening: 0 },
+    { weekday: "Monday", morning: 0, evening: 0 },
+    { weekday: "Tuesday", morning: 0, evening: 0 },
+    { weekday: "Wednesday", morning: 0, evening: 0 },
+    { weekday: "Thursday", morning: 0, evening: 0 },
+    { weekday: "Friday", morning: 0, evening: 0 },
+    { weekday: "Saturday", morning: 0, evening: 0 },
+    { weekday: "Sunday", morning: 0, evening: 0 },
   ];
 
   filteredEvents?.forEach((event) => {
