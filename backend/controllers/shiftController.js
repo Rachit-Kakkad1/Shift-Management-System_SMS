@@ -10,10 +10,12 @@ const getShifts = async (req, res) => {
     let shifts;
     let count;
 
-    const startOfMonth = moment(start).startOf("month").toDate();
-    const endOfMonth = moment(start).endOf("month").toDate();
+    // If no start date provided, use current month
+    const referenceDate = start ? moment(start) : moment();
+    const startOfMonth = referenceDate.clone().startOf("month").toDate();
+    const endOfMonth = referenceDate.clone().endOf("month").toDate();
 
-    if (req.user.role === "admin") {
+    if (req.user.role === "admin" || req.user.role === "hr") {
       shifts = await Shift.find({
         start: { $gte: startOfMonth, $lte: endOfMonth },
       })
@@ -29,6 +31,7 @@ const getShifts = async (req, res) => {
     } else {
       shifts = await Shift.find({
         employee: req.user._id,
+        start: { $gte: startOfMonth, $lte: endOfMonth },
       })
         .populate({
           path: "employee",
@@ -38,6 +41,7 @@ const getShifts = async (req, res) => {
         .lean();
       count = await Shift.countDocuments({
         employee: req.user._id,
+        start: { $gte: startOfMonth, $lte: endOfMonth },
       }).lean();
     }
 
