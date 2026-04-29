@@ -9,48 +9,36 @@ const StatisticBar = ({ events, user }) => {
 
   const totalCount = events.filter((event) => event.uid === user._id).length;
 
+  const morningWidth = totalCount > 0 ? (morningCount / totalCount) * 100 : 0;
+  const nightWidth = totalCount > 0 ? (nightCount / totalCount) * 100 : 0;
+
   return (
-    <div className="w-full max-w-md mx-auto text-xs md:text-sm">
-      <div
-        className="relative w-full h-6 bg-gray-200 rounded overflow-hidden"
-        role="img"
-        aria-label={`Shift distribution for ${user.name}: ${morningCount} Morning, ${nightCount} Evening of total ${totalCount} shifts`}
-      >
+    <div className="w-full space-y-3">
+      <div className="flex justify-between items-center mb-1">
+         <span className="text-[10px] font-black text-stone-400 uppercase tracking-widest">Efficiency</span>
+         <span className="text-[11px] font-bold text-stone-900">{totalCount} Shifts Total</span>
+      </div>
+      
+      <div className="relative w-full h-2.5 bg-stone-100 rounded-full overflow-hidden shadow-inner flex">
         <div
-          className="absolute top-0 left-0 h-full bg-yellow-400"
-          style={{
-            width: `${(morningCount / totalCount) * 100}%`,
-            zIndex: 12,
-          }}
+          className="h-full bg-amber-400 transition-all duration-1000 ease-out"
+          style={{ width: `${morningWidth}%` }}
         />
         <div
-          className="absolute top-0 left-0 h-full bg-purple-500/85"
-          style={{
-            width: `${((morningCount + nightCount) / totalCount) * 100}%`,
-            zIndex: 11,
-          }}
+          className="h-full bg-indigo-600 transition-all duration-1000 ease-out"
+          style={{ width: `${nightWidth}%` }}
         />
       </div>
 
-      <div className="flex justify-between mt-2 text-xs md:text-sm text-center">
-        <span
-          className="text-yellow-600 font-semibold"
-          aria-label={`${morningCount} Morning shifts`}
-        >
-          M: {morningCount}
-        </span>
-        <span
-          className="text-primary font-semibold"
-          aria-label={`${totalCount} Total shifts`}
-        >
-          T: {totalCount}
-        </span>
-        <span
-          className="text-purple-600 font-semibold"
-          aria-label={`${nightCount} Evening shifts`}
-        >
-          E: {nightCount}
-        </span>
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1.5">
+           <div className="w-1.5 h-1.5 rounded-full bg-amber-400"></div>
+           <span className="text-[10px] font-bold text-stone-500 uppercase tracking-tighter">Morning ({morningCount})</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+           <div className="w-1.5 h-1.5 rounded-full bg-indigo-600"></div>
+           <span className="text-[10px] font-bold text-stone-500 uppercase tracking-tighter">Evening ({nightCount})</span>
+        </div>
       </div>
     </div>
   );
