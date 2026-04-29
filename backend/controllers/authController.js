@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const { logAction } = require("../utils/auditLogger");
+const { sendWelcomeEmail } = require("../utils/emailService");
 
 const generateToken = (userId) => {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
@@ -14,7 +15,7 @@ const generateToken = (userId) => {
 
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password, team, workType } = req.body;
+    const { name, email, password, team, workType, role, passcode } = req.body;
 
     const userExists = await User.findOne({ email });
 
@@ -24,15 +25,27 @@ const registerUser = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+    
+    let hashedPasscode = null;
+    if (passcode) {
+      hashedPasscode = await bcrypt.hash(passcode, salt);
+    } else if (role === "admin" || role === "hr") {
+      // Default passcode for admin/hr if none provided
+      hashedPasscode = await bcrypt.hash("1234", salt);
+    }
 
     const user = await User.create({
       name,
       email,
       password: hashedPassword,
+      passcodeHash: hashedPasscode,
       team,
       workType,
-      role: "employee",
+      role: role || "employee",
     });
+
+    // Send Welcome Email (async, don't wait for it to respond to client)
+    sendWelcomeEmail(email, name, password, role || "employee", passcode || "1234");
 
     res.status(201).json({
       _id: user._id,
