@@ -14,42 +14,35 @@ const DashboardCalendar = ({
   const calendar = useCalendarApp({
     calendars: {
       sozialarbeiter: {
-        colorName: "leisure",
+        colorName: "sozialarbeiter",
         lightColors: {
-          main: "#1c7df9",
-          container: "#d2e7ff",
-          onContainer: "#002859",
-        },
-        darkColors: {
-          main: "#c0dfff",
-          onContainer: "#dee6ff",
-          container: "#426aa2",
+          main: "#f97316", // Orange 500
+          container: "#fff7ed", // Orange 50
+          onContainer: "#7c2d12", // Orange 900
         },
       },
       sozialbetreuer: {
-        colorName: "work",
+        colorName: "sozialbetreuer",
         lightColors: {
-          main: "#f91c45",
-          container: "#ffd2dc",
-          onContainer: "#59000d",
-        },
-        darkColors: {
-          main: "#ffc0cc",
-          onContainer: "#ffdee6",
-          container: "#a24258",
+          main: "#1c1917", // Stone 900
+          container: "#f5f5f4", // Stone 100
+          onContainer: "#1c1917", // Stone 900
         },
       },
       sozialbetreuerhelfer: {
-        colorName: "personal",
+        colorName: "sozialbetreuerhelfer",
         lightColors: {
-          main: "#efb100",
-          container: "#fff5aa",
-          onContainer: "#594800",
+          main: "#f59e0b", // Amber 500
+          container: "#fffbeb", // Amber 50
+          onContainer: "#78350f", // Amber 900
         },
-        darkColors: {
-          main: "#fff5c0",
-          onContainer: "#fff5de",
-          container: "#a29742",
+      },
+      partTime: {
+        colorName: "partTime",
+        lightColors: {
+          main: "#10b981", // Emerald 500
+          container: "#ecfdf5", // Emerald 50
+          onContainer: "#064e3b", // Emerald 900
         },
       },
     },
@@ -65,8 +58,9 @@ const DashboardCalendar = ({
       end: "23:00",
     },
     showWeekNumbers: true,
-    plugins: [createEventModalPlugin(), createDragAndDropPlugin()],
+    plugins: [createEventModalPlugin()],
     events: events,
+    isDark: false,
     callbacks: {
       onEventUpdate(updatedEvent) {
         if (editMode) handleShiftUpdate(updatedEvent);
@@ -76,8 +70,9 @@ const DashboardCalendar = ({
       },
     },
   });
+
   return (
-    <div>
+    <div className="h-[750px] w-full transition-all duration-1000 ease-in-out">
       <ScheduleXCalendar calendarApp={calendar} />
     </div>
   );
