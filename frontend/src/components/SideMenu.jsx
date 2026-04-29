@@ -1,78 +1,93 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { SIDE_MENU_DATA, SIDE_MENU_USER_DATA } from "../utils/data";
-import { UserContext } from "../context/UserContext";
+import React from "react";
+import { Link, useNavigate } from "react-router";
+import { 
+  LayoutDashboard, 
+  Zap, 
+  Lock, 
+  LogOut, 
+  Clock, 
+  Calendar,
+  Sparkles,
+  ShieldCheck,
+  User
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 const SideMenu = ({ activeMenu }) => {
-  const { user, clearUser } = useContext(UserContext);
-  const [sideMenuData, setSideMenuData] = useState([]);
   const navigate = useNavigate();
-
-  const handleClick = (route) => {
-    if (route === "logout") {
-      handleLogout();
-      return;
-    }
-
-    navigate(route);
-  };
 
   const handleLogout = () => {
     localStorage.clear();
-    clearUser();
     navigate("/login");
   };
 
-  useEffect(() => {
-    if (user) {
-      setSideMenuData(
-        user?.role === "admin" ? SIDE_MENU_DATA : SIDE_MENU_USER_DATA,
-      );
-      return () => {};
-    }
-  }, [user]);
+  const menuItems = [
+    { name: "Dashboard", icon: LayoutDashboard, path: "/user/dashboard" },
+    { name: "My Analytics", icon: Zap, path: "/user/statistics" },
+    { name: "Security", icon: Lock, path: "/user/change-password" },
+    { name: "Profile", icon: User, path: "/user/profile" },
+  ];
 
   return (
-    <div className="w-64 h-[calc(100vh-61px)] bg-white border-r border-gray-200/50 sticky top-15.25 z-20">
-      <div className="flex flex-col items-center justify-center mb-7 pt-5">
-        <div className="relative">
-          <img
-            className="w-20 h-20 bg-slate-400 rounded-full object-cover"
-            src={`/avatars/avatar_12.png`}
-            onError={(e) => {
-              e.currentTarget.src = "https://avatar.iran.liara.run/public/12";
-            }}
-            alt={`Profile picture of ${user?.name || "User"}`}
-          />
-        </div>
+    <div className="flex flex-col h-full bg-white/80 backdrop-blur-2xl">
+      {/* Navigation */}
+      <nav className="flex-1 px-6 space-y-3 mt-10">
+        {menuItems.map((item) => {
+          const isActive = activeMenu === item.name;
+          return (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`relative flex items-center gap-4 px-6 py-5 rounded-[1.75rem] transition-all duration-500 group overflow-hidden ${
+                isActive
+                  ? "text-teal-600 bg-teal-50/50"
+                  : "text-stone-400 hover:text-stone-900 hover:bg-stone-50/80"
+              }`}
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="sidemenu-active"
+                  className="absolute left-0 w-1.5 h-8 bg-teal-500 rounded-r-full"
+                />
+              )}
+              <item.icon
+                className={`w-5 h-5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 ${
+                  isActive ? "text-teal-600" : ""
+                }`}
+              />
+              <span className={`text-[15px] font-bold tracking-tight ${isActive ? "font-black" : ""}`}>
+                {item.name}
+              </span>
+            </Link>
+          );
+        })}
+      </nav>
 
-        {user?.role === "admin" && (
-          <div className="text-[10px] font-medium text-white bg-primary px-3 py-0.5 rounded mt-1">
-            Admin
-          </div>
-        )}
-
-        <h5 className="text-gray-950 font-medium leading-6 mt-3 ">
-          {user?.name || ""}
-        </h5>
-        <p className="text-xs text-gray-500">{user?.email || ""}</p>
+      {/* Footer Info Box */}
+      <div className="px-6 mb-8">
+         <div className="bg-stone-900 rounded-[2rem] p-6 text-white relative overflow-hidden group">
+            <Sparkles size={100} className="absolute -bottom-10 -right-10 opacity-10 group-hover:scale-125 transition-transform duration-1000" />
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-teal-400 mb-2">ShiftSync Plus</p>
+            <p className="text-xs font-medium text-stone-400 leading-relaxed mb-4">You are on the enterprise tier with full priority support.</p>
+            <div className="flex items-center gap-2">
+               <ShieldCheck size={12} className="text-emerald-400" />
+               <span className="text-[9px] font-black uppercase tracking-widest text-emerald-400">Identity Verified</span>
+            </div>
+         </div>
       </div>
 
-      {sideMenuData.map((item, index) => (
+      {/* Logout */}
+      <div className="p-8 border-t border-stone-50">
         <button
-          key={`menu_${index}`}
-          className={`w-full flex items-center gap-4 text-[15px] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary ${
-            activeMenu === item.label
-              ? "text-primary bg-linear-to-r from-blue-50/40 to-blue-100/50 border-r-3"
-              : ""
-          } py-3 px-6 mb-3 cursor-pointer`}
-          onClick={() => handleClick(item.path)}
-          aria-current={activeMenu === item.label ? "page" : undefined}
+          onClick={handleLogout}
+          className="w-full flex items-center gap-4 px-6 py-4 rounded-[1.5rem] text-rose-500 hover:bg-rose-50 transition-all group group"
         >
-          <item.icon className="text-xl" />
-          {item.label}
+          <div className="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center group-hover:bg-rose-100 transition-colors shrink-0">
+             <LogOut className="w-5 h-5" />
+          </div>
+          <span className="font-bold text-[15px]">Secure Sign Out</span>
         </button>
-      ))}
+      </div>
     </div>
   );
 };
