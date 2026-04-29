@@ -8,11 +8,13 @@ const {
   deleteUserById,
   updateUserById,
   updateUserPassword,
+  updateUserProfile,
 } = require("../controllers/userController");
 
 const router = express.Router();
 
 router.get("/", protect, adminOnly, getUsers);
+router.put("/profile", protect, updateUserProfile);
 router.get("/:id", protect, getUserById);
 router.put("/:id", protect, adminOnly, updateUserById);
 router.put("/", protect, updateUserPassword);
