@@ -1,104 +1,169 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Poppins", sans-serif;
+  --font-display: "Outfit", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
   --breakpoint-3xl: 1920px;
-  --color-primary: #1368ec;
+  --color-primary: #f97316; /* Orange 500 */
+  --color-primary-dark: #ea580c; /* Orange 600 */
+  --color-accent: #f59e0b; /* Amber 500 */
+  --color-stone-900: #1c1917;
 }
 
 @layer base {
+  :root {
+    --bg-main: #fcfcfc;
+    --bg-surface: #ffffff;
+    --bg-glass: rgba(255, 255, 255, 0.7);
+    --text-strong: #0c0a09;
+    --text-main: #44403c;
+    --text-muted: #78716c;
+    --border-light: rgba(0, 0, 0, 0.04);
+    --border-medium: rgba(0, 0, 0, 0.08);
+    --primary-glow: rgba(249, 115, 22, 0.1);
+  }
+
   html {
     font-family: var(--font-display);
+    scroll-behavior: smooth;
+    cursor: default;
   }
 
   body {
-    background-color: #fcfbfc;
+    background-color: var(--bg-main);
+    color: var(--text-main);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
   }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e7e5e4;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d6d3d1;
+  }
+}
+
+/* Modern Utilities */
+.glass-card {
+  @apply bg-white/80 backdrop-blur-2xl border border-white/50 shadow-[0_32px_64px_-15px_rgba(0,0,0,0.03)] rounded-[2.5rem];
+}
+
+.premium-shadow {
+  box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.03), 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .input-box {
-  @apply w-full flex justify-between gap-3 text-sm text-black bg-slate-100/50 px-4 py-3 mb-4 mt-3 border border-slate-200 outline-none;
+  @apply w-full flex justify-between gap-3 text-[15px] text-stone-900 bg-stone-50/50 px-6 py-4 mb-4 mt-2 border border-stone-100 rounded-2xl outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/50 transition-all duration-500;
 }
 
 .btn-primary {
-  @apply w-full text-sm font-medium text-white bg-primary shadow-lg shadow-purple-600/5 p-[10px] rounded-md my-1 hover:bg-blue-600/15 hover:text-blue-600 cursor-pointer;
+  @apply w-full text-[15px] font-black text-white bg-stone-900 shadow-2xl shadow-stone-900/10 p-[16px] rounded-2xl my-1 hover:bg-stone-800 active:scale-[0.97] transition-all duration-500 cursor-pointer flex items-center justify-center gap-2 tracking-tight;
 }
 
 .card {
-  @apply bg-white p-6 rounded-2xl shadow-md shadow-gray-100 border border-gray-200/50;
+  @apply bg-white p-10 rounded-[2.5rem] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.03)] border border-stone-100/60 transition-all duration-500;
+}
+
+.card:hover {
+  @apply shadow-[0_32px_64px_-15px_rgba(0,0,0,0.05)] border-stone-200/60;
 }
 
 .card-btn {
-  @apply flex items-center gap-3 text-[12px] font-medium text-gray-700 hover:text-primary bg-gray-50 hover:bg-blue-50 px-4 py-1.5 rounded-lg border border-gray-200/50 cursor-pointer;
+  @apply flex items-center gap-3 text-[12px] font-black uppercase tracking-widest text-stone-500 hover:text-stone-900 bg-stone-50/80 hover:bg-white px-6 py-3 rounded-2xl border border-stone-100 hover:border-stone-200 hover:shadow-xl hover:shadow-stone-200/40 transition-all cursor-pointer;
 }
 
 .card-btn-fill {
-  @apply flex items-center gap-3 text-[12px] font-medium text-white hover:text-primary bg-primary hover:bg-blue-50 px-4 py-1.5 rounded-lg border border-primary cursor-pointer;
+  @apply flex items-center gap-3 text-[12px] font-black uppercase tracking-widest text-white bg-primary hover:bg-primary-dark px-6 py-3 rounded-2xl border border-primary transition-all cursor-pointer shadow-xl shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0;
 }
 
 .form-card {
-  @apply bg-white p-6 rounded-lg shadow-md shadow-gray-100 border border-gray-200/50;
+  @apply bg-white p-10 rounded-[3rem] shadow-2xl shadow-stone-200/30 border border-stone-100;
 }
 
 .form-input {
-  @apply w-full text-sm text-black outline-none bg-white border border-slate-100 px-2.5 py-3 rounded-md mt-2 placeholder:text-gray-500;
+  @apply w-full text-[15px] text-stone-900 outline-none bg-stone-50/50 border border-stone-100 px-6 py-4 rounded-2xl mt-2 placeholder:text-stone-400 focus:ring-4 focus:ring-primary/5 focus:border-primary/50 transition-all duration-500 font-medium;
 }
 
 .add-btn {
-  @apply w-full flex items-center justify-center gap-1.5 text-xs md:text-sm font-medium text-primary whitespace-nowrap bg-blue-50 border border-blue-100 rounded-lg px-4 py-2 cursor-pointer;
-}
-
-.download-btn {
-  @apply items-center gap-3 text-xs md:text-[13px] text-lime-900 bg-lime-100 px-2 md:px-3 py-2 rounded border border-lime-200 hover:border-lime-400 cursor-pointer;
-}
-
-.delete-btn {
-  @apply items-center gap-3 text-xs md:text-[13px] text-red-900 bg-red-100 px-2 md:px-3 py-2 rounded border border-red-200 hover:border-red-400 cursor-pointer;
-}
-.user-card {
-  @apply bg-white p-4 rounded-xl shadow-md shadow-gray-100 border border-gray-200/50;
+  @apply flex items-center justify-center gap-2 text-[13px] font-black uppercase tracking-widest text-white bg-stone-900 rounded-2xl px-8 py-3.5 hover:bg-stone-800 transition-all shadow-2xl shadow-stone-900/20 hover:-translate-y-1 active:translate-y-0 cursor-pointer;
 }
 
 .select-boxx {
-  @apply border border-gray-300 bg-white px-4 py-2 rounded-lg text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition;
+  @apply border border-stone-100 bg-stone-50/50 px-6 py-3.5 rounded-2xl text-[15px] font-bold text-stone-900 shadow-sm focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary/50 transition-all duration-500 appearance-none cursor-pointer;
 }
 
+/* Calendar Customization for Orange Theme */
 .sx-react-calendar-wrapper {
   width: 100%;
   height: 800px;
-  max-height: 75dvh;
+  max-height: 80dvh;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -12px rgba(0,0,0,0.03);
 }
 
-.sx__month-agenda-events {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 1rem;
+.sx__calendar-wrapper {
+  background: white !important;
+  border: none !important;
 }
 
-.sx__month-agenda-event {
-  margin-top: 8px;
+.sx__view-container {
+  background: white !important;
 }
 
-:root {
-  --sx-week-grid-hour-height: 46.5px !important;
-  --sx-week-grid-height: 700px !important;
+.sx__time-grid-day {
+  border-color: #f5f5f4 !important;
 }
 
-@media print {
-  body * {
-    visibility: hidden;
-  }
+.sx__time-grid-line {
+  border-bottom-color: #fafaf9 !important;
+}
 
-  .print-area,
-  .print-area * {
-    visibility: visible;
-  }
+.sx__month-grid-day {
+  border-color: #f5f5f4 !important;
+}
 
-  .print-area {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-  }
+/* New: Animated Background Mesh */
+.mesh-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #fcfcfc;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(249, 115, 22, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(249, 115, 22, 0.02) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(249, 115, 22, 0.01) 0px, transparent 50%);
+}
+
+/* Animations */
+@keyframes entrance {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-entrance {
+  animation: entrance 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
