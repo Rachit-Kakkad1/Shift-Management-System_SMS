@@ -5,12 +5,14 @@ export const API_PATH = {
     REGISTER: "/api/auth/register",
     LOGIN: "/api/auth/login",
     GET_PROFILE: "/api/auth/profile",
+    VERIFY_PASSCODE: "/api/auth/verify-passcode",
   },
   USERS: {
     GET_ALL_USERS: "/api/users",
     GET_USER_BY_ID: (userId) => `/api/users/${userId}`,
     UPDATE_USER_BY_ID: (userId) => `/api/users/${userId}`,
     UPDATE_USER_PASSWORD: "/api/users",
+    UPDATE_PROFILE: "/api/users/profile",
     DELETE_USER_BY_ID: (userId) => `/api/users/${userId}`,
   },
   SHIFTS: {
