@@ -33,7 +33,7 @@ const Navbar = ({ navigate }) => {
       <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/80 backdrop-blur-md border-b border-stone-200/60 shadow-sm py-3" : "bg-transparent py-5"}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-400 to-orange-500 flex items-center justify-center shadow-md">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-teal-400 to-cyan-500 flex items-center justify-center shadow-md">
               <Calendar className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold text-stone-900 tracking-tight">ShiftSync</span>
@@ -87,9 +87,9 @@ const HeroSection = ({ navigate }) => {
         className="absolute inset-0 z-0 opacity-50"
         animate={{
           background: [
-            "radial-gradient(circle at 20% 30%, rgba(217, 119, 6, 0.08) 0%, transparent 50%)",
-            "radial-gradient(circle at 80% 70%, rgba(168, 162, 158, 0.08) 0%, transparent 50%)",
-            "radial-gradient(circle at 20% 30%, rgba(217, 119, 6, 0.08) 0%, transparent 50%)"
+            "radial-gradient(circle at 20% 30%, rgba(13, 148, 136, 0.08) 0%, transparent 50%)",
+            "radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.08) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 30%, rgba(13, 148, 136, 0.08) 0%, transparent 50%)"
           ]
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
@@ -104,13 +104,13 @@ const HeroSection = ({ navigate }) => {
               initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1, ease: customEase }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-100 text-amber-800 text-sm font-medium mb-6 shadow-sm"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 border border-teal-100 text-teal-800 text-sm font-medium mb-6 shadow-sm"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
               </span>
-              ShiftSync 2.0 is now live
+              ShiftSync 4.0 is now live
             </motion.div>
 
             <motion.h1
@@ -121,7 +121,7 @@ const HeroSection = ({ navigate }) => {
             >
               Precision Shift <br className="hidden md:block"/>
               Management for <br className="hidden md:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-stone-600">Modern Teams.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-500">Modern Teams.</span>
             </motion.h1>
 
             <motion.p
@@ -141,7 +141,7 @@ const HeroSection = ({ navigate }) => {
             >
               <button
                 onClick={() => navigate("/login")}
-                className="group relative inline-flex items-center justify-center px-8 py-4 font-semibold text-white transition-all duration-300 bg-stone-900 rounded-full hover:bg-stone-800 hover:shadow-xl hover:-translate-y-0.5"
+                className="group relative inline-flex items-center justify-center px-8 py-4 font-semibold text-white transition-all duration-300 bg-teal-600 rounded-full hover:bg-teal-700 hover:shadow-xl hover:shadow-teal-500/20 hover:-translate-y-0.5"
               >
                 <span>Start for free</span>
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -164,7 +164,7 @@ const HeroSection = ({ navigate }) => {
             <motion.div
               animate={{ y: [-8, 8, -8] }}
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-full aspect-[4/3] bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col font-sans"
+              className="relative w-full aspect-[4/3] bg-white rounded-[2rem] border border-stone-200/60 shadow-[0_30px_60px_-15px_rgba(13,148,136,0.15)] overflow-hidden flex flex-col font-sans"
             >
               {/* Fake UI Header */}
               <div className="h-14 border-b border-stone-100 flex items-center justify-between px-4 bg-white/80 backdrop-blur-md z-10 shrink-0">
@@ -175,7 +175,7 @@ const HeroSection = ({ navigate }) => {
                     <div className="w-3 h-3 rounded-full bg-stone-200 hover:bg-green-400 transition-colors cursor-pointer"></div>
                   </div>
                   <div className="flex items-center gap-2 text-stone-800 font-semibold text-sm ml-2">
-                    <Calendar className="w-4 h-4 text-amber-600" />
+                    <Calendar className="w-4 h-4 text-teal-600" />
                     ShiftSync
                   </div>
                 </div>
@@ -188,7 +188,7 @@ const HeroSection = ({ navigate }) => {
                     <Bell className="w-4 h-4 text-stone-400 hover:text-stone-600" />
                     <div className="absolute top-0 right-0 w-1.5 h-1.5 bg-red-500 rounded-full border border-white"></div>
                   </div>
-                  <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-200 to-orange-300 border border-stone-200 shadow-sm flex items-center justify-center text-[10px] font-bold text-amber-900 cursor-pointer">
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-teal-400 to-cyan-500 shadow-sm flex items-center justify-center text-[10px] font-bold text-white cursor-pointer">
                     JD
                   </div>
                 </div>
@@ -199,7 +199,7 @@ const HeroSection = ({ navigate }) => {
                 {/* Sidebar */}
                 <div className="w-14 sm:w-44 bg-white border-r border-stone-100 flex flex-col py-4 shrink-0">
                   <div className="flex flex-col gap-2 px-2">
-                    <div className="w-full flex items-center gap-3 px-3 py-2 bg-amber-50/80 text-amber-700 rounded-xl text-sm font-medium shadow-sm cursor-pointer">
+                    <div className="w-full flex items-center gap-3 px-3 py-2 bg-teal-50 text-teal-700 rounded-xl text-sm font-medium shadow-sm cursor-pointer">
                       <LayoutDashboard className="w-4 h-4 shrink-0" />
                       <span className="hidden sm:block">Overview</span>
                     </div>
@@ -228,7 +228,7 @@ const HeroSection = ({ navigate }) => {
                       <h2 className="text-lg font-bold text-stone-800 tracking-tight">Team Schedule</h2>
                       <p className="text-xs text-stone-500 font-medium">Oct 24 - Oct 30, 2026</p>
                     </div>
-                    <button className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-900 text-white text-xs font-semibold rounded-lg hover:bg-stone-800 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                    <button className="flex items-center gap-1.5 px-3 py-1.5 bg-teal-600 text-white text-xs font-semibold rounded-lg hover:bg-teal-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                       <Plus className="w-3.5 h-3.5" />
                       Add Shift
                     </button>
@@ -237,21 +237,21 @@ const HeroSection = ({ navigate }) => {
                   {/* Stat Cards */}
                   <div className="flex gap-3 shrink-0">
                     <div className="flex-1 bg-white border border-stone-200/80 rounded-xl p-3 shadow-sm flex flex-col justify-center relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:scale-110 transition-transform"><Clock className="w-10 h-10 text-stone-900"/></div>
+                      <div className="absolute top-0 right-0 p-2 opacity-5 group-hover:scale-110 transition-transform"><Clock className="w-10 h-10 text-teal-900"/></div>
                       <div className="text-xs font-medium text-stone-500 flex items-center gap-1.5 mb-1 relative z-10">
                         <Clock className="w-3.5 h-3.5" /> Total Hours
                       </div>
                       <div className="text-lg font-bold text-stone-800 relative z-10">342<span className="text-xs text-stone-400 font-normal ml-1">hrs</span></div>
                     </div>
                     <div className="flex-1 bg-white border border-stone-200/80 rounded-xl p-3 shadow-sm flex flex-col justify-center relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:scale-110 transition-transform"><CheckCircle2 className="w-10 h-10 text-green-500"/></div>
+                      <div className="absolute top-0 right-0 p-2 opacity-5 group-hover:scale-110 transition-transform"><CheckCircle2 className="w-10 h-10 text-teal-500"/></div>
                       <div className="text-xs font-medium text-stone-500 flex items-center gap-1.5 mb-1 relative z-10">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-green-500" /> Covered
+                        <CheckCircle2 className="w-3.5 h-3.5 text-teal-500" /> Covered
                       </div>
                       <div className="text-lg font-bold text-stone-800 relative z-10">92<span className="text-xs text-stone-400 font-normal ml-1">%</span></div>
                     </div>
                     <div className="flex-1 bg-white border border-stone-200/80 rounded-xl p-3 shadow-sm flex flex-col justify-center relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:scale-110 transition-transform"><AlertCircle className="w-10 h-10 text-amber-500"/></div>
+                      <div className="absolute top-0 right-0 p-2 opacity-5 group-hover:scale-110 transition-transform"><AlertCircle className="w-10 h-10 text-amber-500"/></div>
                       <div className="text-xs font-medium text-stone-500 flex items-center gap-1.5 mb-1 relative z-10">
                         <AlertCircle className="w-3.5 h-3.5 text-amber-500" /> Open Shifts
                       </div>
@@ -278,7 +278,7 @@ const HeroSection = ({ navigate }) => {
                         {/* Row 1 */}
                         <div className="flex flex-1 items-center hover:bg-stone-50/50 transition-colors group">
                           <div className="w-20 sm:w-28 shrink-0 border-r border-stone-100 px-3 flex items-center gap-2">
-                             <div className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-[9px] font-bold shrink-0">AS</div>
+                             <div className="w-6 h-6 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center text-[9px] font-bold shrink-0">AS</div>
                              <div className="text-xs font-medium text-stone-700 truncate hidden sm:block">A. Smith</div>
                           </div>
                           <div className="flex-1 relative h-full">
@@ -286,16 +286,16 @@ const HeroSection = ({ navigate }) => {
                             <div className="absolute inset-0 flex justify-around pointer-events-none opacity-20">
                               <div className="w-px h-full bg-stone-200"></div><div className="w-px h-full bg-stone-200"></div><div className="w-px h-full bg-stone-200"></div>
                             </div>
-                            <div className="absolute top-1/2 -translate-y-1/2 left-[10%] right-[40%] h-8 bg-amber-50 border border-amber-200/80 rounded-lg flex items-center px-2 shadow-sm cursor-pointer hover:border-amber-400 hover:shadow-md transition-all group-hover:scale-[1.01]">
-                               <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mr-2 shadow-[0_0_5px_rgba(245,158,11,0.5)]"></div>
-                               <span className="text-[10px] font-medium text-amber-800 truncate">Morning Shift</span>
+                            <div className="absolute top-1/2 -translate-y-1/2 left-[10%] right-[40%] h-8 bg-teal-50 border border-teal-200/80 rounded-lg flex items-center px-2 shadow-sm cursor-pointer hover:border-teal-400 hover:shadow-md transition-all group-hover:scale-[1.01]">
+                               <div className="w-1.5 h-1.5 rounded-full bg-teal-500 mr-2 shadow-[0_0_5px_rgba(13,148,136,0.5)]"></div>
+                               <span className="text-[10px] font-medium text-teal-800 truncate">Morning Shift</span>
                             </div>
                           </div>
                         </div>
                         {/* Row 2 */}
                         <div className="flex flex-1 items-center hover:bg-stone-50/50 transition-colors group">
                           <div className="w-20 sm:w-28 shrink-0 border-r border-stone-100 px-3 flex items-center gap-2">
-                             <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[9px] font-bold shrink-0">BJ</div>
+                             <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-[9px] font-bold shrink-0">BJ</div>
                              <div className="text-xs font-medium text-stone-700 truncate hidden sm:block">B. Jones</div>
                           </div>
                           <div className="flex-1 relative h-full">
@@ -398,10 +398,10 @@ const FeaturesSection = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: i * 0.1, ease: customEase }}
               onMouseEnter={handleMouseEnter}
-              className="group p-8 bg-white rounded-3xl border border-stone-200/60 shadow-sm hover:shadow-xl hover:shadow-amber-900/5 transition-all duration-500 cursor-default"
+              className="group p-8 bg-white rounded-3xl border border-stone-200/60 shadow-sm hover:shadow-xl hover:shadow-teal-900/5 transition-all duration-500 cursor-default"
             >
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center mb-6 feature-icon border border-amber-100">
-                <f.icon className="w-6 h-6 text-amber-600" />
+              <div className="w-12 h-12 rounded-2xl bg-teal-50 flex items-center justify-center mb-6 feature-icon border border-teal-100">
+                <f.icon className="w-6 h-6 text-teal-600" />
               </div>
               <h3 className="text-xl font-semibold text-stone-900 mb-3">{f.title}</h3>
               <p className="text-stone-500 leading-relaxed text-sm">{f.desc}</p>
@@ -441,12 +441,12 @@ const ShowcaseSection = () => {
     { 
       title: "Intelligent Dashboard", 
       desc: "Get a bird's-eye view of your entire operation in real-time.", 
-      color: "bg-amber-50",
+      color: "bg-teal-50",
       mockup: (
         <div className="absolute inset-4 sm:inset-8 bg-white/80 backdrop-blur-xl rounded-[2rem] border border-white shadow-xl flex flex-col overflow-hidden font-sans">
           <div className="h-12 border-b border-stone-100 flex items-center px-4 justify-between bg-white shrink-0">
             <div className="w-24 h-4 bg-stone-100 rounded-md"></div>
-            <div className="w-8 h-8 rounded-full bg-amber-100"></div>
+            <div className="w-8 h-8 rounded-full bg-teal-100"></div>
           </div>
           <div className="flex-1 flex p-4 sm:p-6 gap-4 overflow-hidden">
             <div className="w-1/3 hidden sm:flex flex-col gap-3">
@@ -456,7 +456,7 @@ const ShowcaseSection = () => {
               </div>
               <div className="flex-1 bg-stone-50 rounded-xl border border-stone-100 p-4 flex flex-col gap-2">
                 <div className="h-4 w-16 bg-stone-200 rounded-md mb-2"></div>
-                <div className="flex-1 rounded-lg bg-gradient-to-t from-amber-100 to-transparent border-b-2 border-amber-400"></div>
+                <div className="flex-1 rounded-lg bg-gradient-to-t from-teal-100 to-transparent border-b-2 border-teal-400"></div>
               </div>
             </div>
             <div className="flex-1 flex flex-col gap-3">
@@ -467,12 +467,12 @@ const ShowcaseSection = () => {
                <div className="flex-1 bg-stone-50 rounded-xl border border-stone-100 p-4 flex flex-col gap-3">
                  {[1,2,3,4].map(i => (
                    <div key={i} className="flex-1 bg-white rounded-lg border border-stone-100 shadow-sm flex items-center px-3 gap-3">
-                     <div className="w-6 h-6 rounded-full bg-amber-100 shrink-0"></div>
+                     <div className="w-6 h-6 rounded-full bg-teal-100 shrink-0"></div>
                      <div className="flex-1">
                        <div className="h-2 w-1/2 bg-stone-200 rounded-full mb-1.5"></div>
                        <div className="h-1.5 w-1/3 bg-stone-100 rounded-full"></div>
                      </div>
-                     <div className="w-12 h-4 bg-emerald-50 rounded-full border border-emerald-100 shrink-0"></div>
+                     <div className="w-12 h-4 bg-cyan-50 rounded-full border border-cyan-100 shrink-0"></div>
                    </div>
                  ))}
                </div>
@@ -500,7 +500,7 @@ const ShowcaseSection = () => {
                 <div className="text-[10px] font-semibold text-stone-500 uppercase tracking-wider mb-1.5">Employee</div>
                 <div className="h-10 w-full border border-stone-200 rounded-lg flex items-center px-3 justify-between bg-stone-50">
                    <div className="flex items-center gap-2">
-                     <div className="w-5 h-5 rounded-full bg-amber-200"></div>
+                     <div className="w-5 h-5 rounded-full bg-teal-200"></div>
                      <div className="text-xs font-medium text-stone-700">Select team member...</div>
                    </div>
                    <ChevronDown className="w-4 h-4 text-stone-400" />
@@ -536,7 +536,7 @@ const ShowcaseSection = () => {
     { 
       title: "Actionable Insights", 
       desc: "Transform complex data into simple, beautiful charts.", 
-      color: "bg-orange-50",
+      color: "bg-cyan-50",
       mockup: (
          <div className="absolute inset-4 sm:inset-8 bg-white rounded-[2rem] border border-stone-200 shadow-xl flex flex-col p-6 gap-6">
             <div className="flex justify-between items-center">
@@ -546,13 +546,13 @@ const ShowcaseSection = () => {
             <div className="flex gap-4 h-32">
               <div className="w-1/3 bg-stone-50 rounded-xl border border-stone-100 p-4 flex flex-col justify-between">
                 <div className="text-xs font-medium text-stone-500">Efficiency Score</div>
-                <div className="text-3xl font-black text-amber-600">94<span className="text-sm text-stone-400">%</span></div>
+                <div className="text-3xl font-black text-teal-600">94<span className="text-sm text-stone-400">%</span></div>
               </div>
               <div className="flex-1 bg-stone-50 rounded-xl border border-stone-100 p-4 flex items-end gap-2 justify-between">
                  {/* Bar Chart Mockup */}
                  {[40, 70, 45, 90, 65, 80, 50].map((h, i) => (
-                   <div key={i} className="w-full bg-amber-100 rounded-t-md relative group cursor-pointer" style={{ height: `${h}%` }}>
-                      <div className="absolute bottom-0 left-0 right-0 bg-amber-500 rounded-t-md transition-all group-hover:bg-amber-600" style={{ height: `${h * 0.8}%` }}></div>
+                   <div key={i} className="w-full bg-teal-100 rounded-t-md relative group cursor-pointer" style={{ height: `${h}%` }}>
+                      <div className="absolute bottom-0 left-0 right-0 bg-teal-500 rounded-t-md transition-all group-hover:bg-teal-600" style={{ height: `${h * 0.8}%` }}></div>
                    </div>
                  ))}
               </div>
@@ -560,12 +560,12 @@ const ShowcaseSection = () => {
             <div className="flex-1 bg-stone-50 rounded-xl border border-stone-100 p-4 flex items-center gap-6">
                {/* Donut chart mockup */}
                <div className="w-24 h-24 rounded-full border-8 border-stone-200 relative shrink-0">
-                  <div className="absolute inset-0 rounded-full border-8 border-amber-500 border-r-transparent border-b-transparent transform rotate-45"></div>
+                  <div className="absolute inset-0 rounded-full border-8 border-teal-500 border-r-transparent border-b-transparent transform rotate-45"></div>
                   <div className="absolute inset-0 flex items-center justify-center text-sm font-bold text-stone-700">72%</div>
                </div>
                <div className="flex-1 flex flex-col gap-2">
                   <div className="flex justify-between items-center text-xs font-medium">
-                    <span className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-amber-500"></div> Productive Hours</span>
+                    <span className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-teal-500"></div> Productive Hours</span>
                     <span className="text-stone-700 font-bold">240h</span>
                   </div>
                   <div className="flex justify-between items-center text-xs font-medium">
@@ -588,7 +588,7 @@ const ShowcaseSection = () => {
                 
                 {/* Left Text */}
                 <div className="md:w-1/3 text-left">
-                  <div className="text-sm font-semibold text-amber-600 tracking-widest uppercase mb-4">Phase 0{i+1}</div>
+                  <div className="text-sm font-semibold text-teal-600 tracking-widest uppercase mb-4">Phase 0{i+1}</div>
                   <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-6 leading-tight">{panel.title}</h2>
                   <p className="text-xl text-stone-500 font-light leading-relaxed">{panel.desc}</p>
                 </div>
@@ -641,7 +641,7 @@ const StatItem = ({ stat, index }) => {
         >
           0
         </span>
-        <span className="text-4xl font-bold text-amber-500">{stat.suffix}</span>
+        <span className="text-4xl font-bold text-teal-500">{stat.suffix}</span>
       </motion.div>
       <div className="text-stone-500 font-medium">{stat.label}</div>
     </div>
@@ -671,9 +671,9 @@ const StatsSection = () => {
 // 6. Use Cases
 const UseCasesSection = () => {
   const cases = [
-    { role: "For Admins", desc: "Total control over operations. Set rules, approve requests, and monitor budgets effortlessly.", color: "from-amber-50 to-amber-100/50", shadow: "hover:shadow-amber-500/10" },
+    { role: "For Admins", desc: "Total control over operations. Set rules, approve requests, and monitor budgets effortlessly.", color: "from-teal-50 to-teal-100/50", shadow: "hover:shadow-teal-500/10" },
     { role: "For Employees", desc: "A beautiful app to see shifts, swap with peers, and manage availability in seconds.", color: "from-stone-50 to-stone-100/50", shadow: "hover:shadow-stone-500/10" },
-    { role: "For HR", desc: "Automated compliance, seamless payroll exports, and detailed reporting.", color: "from-orange-50 to-orange-100/50", shadow: "hover:shadow-orange-500/10" }
+    { role: "For HR", desc: "Automated compliance, seamless payroll exports, and detailed reporting.", color: "from-cyan-50 to-cyan-100/50", shadow: "hover:shadow-cyan-500/10" }
   ];
 
   return (
@@ -708,7 +708,7 @@ const UseCasesSection = () => {
 const TestimonialsSection = () => {
   return (
     <section className="py-32 bg-[#faf8f5] relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-amber-100/40 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal-100/40 rounded-full blur-3xl pointer-events-none" />
       
       <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center">
         <motion.div
@@ -719,13 +719,13 @@ const TestimonialsSection = () => {
           className="bg-white/80 backdrop-blur-xl border border-white shadow-xl rounded-3xl p-12 md:p-16"
         >
           <div className="flex justify-center mb-8 gap-1">
-             {[1,2,3,4,5].map(i => <div key={i} className="text-amber-400 text-2xl">★</div>)}
+             {[1,2,3,4,5].map(i => <div key={i} className="text-teal-400 text-2xl">★</div>)}
           </div>
           <p className="text-2xl md:text-3xl font-medium text-stone-900 leading-tight mb-8 font-serif italic">
             "ShiftSync completely transformed how we manage our 200+ retail staff. What used to take days now takes hours. It's simply brilliant."
           </p>
           <div className="flex items-center justify-center gap-4 mt-8">
-             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-200 to-orange-300 shadow-inner flex items-center justify-center font-bold text-amber-900">SJ</div>
+             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-200 to-cyan-300 shadow-inner flex items-center justify-center font-bold text-teal-900">SJ</div>
              <div className="text-left">
                 <div className="font-bold text-stone-900 text-sm">Sarah Jenkins</div>
                 <div className="text-xs text-stone-500 font-medium tracking-wide uppercase mt-0.5">Operations Director, Apex Retail</div>
@@ -742,7 +742,7 @@ const CTASection = ({ navigate }) => {
   return (
     <section className="py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-stone-900" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(217,119,6,0.15),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(13,148,136,0.15),transparent_60%)]" />
       
       <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
         <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
@@ -760,7 +760,7 @@ const CTASection = ({ navigate }) => {
             className="relative px-10 py-5 bg-white text-stone-900 font-bold rounded-full text-lg overflow-hidden group shadow-[0_0_40px_rgba(255,255,255,0.1)]"
           >
             <span className="relative z-10">Start for free</span>
-            <div className="absolute inset-0 bg-amber-50 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-teal-50 opacity-0 group-hover:opacity-100 transition-opacity" />
           </motion.button>
           <button className="px-10 py-5 text-white font-semibold rounded-full border border-stone-700 hover:bg-stone-800 transition-colors">
             Contact Sales
@@ -821,7 +821,7 @@ const Root = () => {
   }, []);
 
   return (
-    <div className="bg-white text-stone-900 font-sans selection:bg-amber-100 selection:text-amber-900">
+    <div className="bg-white text-stone-900 font-sans selection:bg-teal-100 selection:text-teal-900">
       <Navbar navigate={navigate} />
       <HeroSection navigate={navigate} />
       <MarqueeSection />
